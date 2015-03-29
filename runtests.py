@@ -13,6 +13,8 @@ if not settings.configured:
         },
         INSTALLED_APPS=[
             'tests',
+            'tests.b',
+            'tests.a',
         ],
         MIDDLEWARE_CLASSES=[],
     )

@@ -80,7 +80,11 @@ class BaseTestCase(TestCase):
 
 class RegisterTestCase(TestCase):
     def setUp(self):
+        self._mixin_registry = base._mixin_registry
         base._mixin_registry = {}
+
+    def tearDown(self):
+        base._mixin_registry = self._mixin_registry
 
     def test_register(self):
         extend_model('app.model', MixinA)
@@ -97,3 +101,19 @@ class RegisterTestCase(TestCase):
             get_registered_mixins('model', app_label='app')[2],
             MixinC
         )
+
+
+class ExtendingTestCase(TestCase):
+    def test_a(self):
+        from .a.models import A
+        self.assertEqual(A._meta.verbose_name, 'who')
+        self.assertEqual(A._meta.verbose_name_plural, 'me')
+        self.assertEqual(A.c, 2)
+        self.assertTrue(isinstance(
+            A._meta.get_field('a'),
+            models.CharField
+        ))
+        self.assertTrue(isinstance(
+            A._meta.get_field('b'),
+            models.BooleanField
+        ))
