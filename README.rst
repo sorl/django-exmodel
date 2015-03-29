@@ -4,6 +4,7 @@ The ex-model lets you extend models in apps by adding mixins to them.
 The mixins can over ride fields and methods of the original model.
 
 Example::
+
     # file: staff.models
     from django.db import models
     from exmodel import Model, extend_model
