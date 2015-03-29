@@ -11,7 +11,8 @@ Example::
 
 
     class Person(Model):
-        name = models.CharField(max_lenth=10)
+        name = models.CharField(max_length=10)
+        room = models.CharField(max_length=10)
 
         def __unicode__(self):
             return self.name
@@ -22,8 +23,8 @@ Example::
 
 
     class PersonMixin(object):
-        name = models.CharField(max_lenth=500)
-        alias = models.CharField(max_lenth=500)
+        name = models.CharField(max_length=500)
+        alias = models.CharField(max_length=500)
 
         def __unicode__(self):
             return u'%s (%s)' % (self.name, self.alias)
@@ -31,5 +32,22 @@ Example::
         class Meta:
             verbose_name = 'Person name and alias'
 
+
+    extend_model('staff.Person', PersonMixin)
+
+
+The resulting model will be::
+
+    class Person(Model):
+        name = models.CharField(max_length=500)
+        room = models.CharField(max_length=10)
+        alias = models.CharField(max_length=500)
+
+        def __unicode__(self):
+            return u'%s (%s)' % (self.name, self.alias)
+
+        class Meta:
+            app_label = 'staff'
+            verbose_name = 'Person name'
 
     extend_model('staff.Person', PersonMixin)
