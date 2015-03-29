@@ -48,6 +48,4 @@ The resulting model will be::
 
         class Meta:
             app_label = 'staff'
-            verbose_name = 'Person name'
-
-    extend_model('staff.Person', PersonMixin)
+            verbose_name = 'Person name and alias'
