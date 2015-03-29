@@ -8,7 +8,7 @@ setup(
     long_description=open('README.rst').read(),
     author='Mikko Hellsing',
     author_email='mikko@aino.com',
-    url='http://github.com/aino/django-exmodel',
+    url='http://github.com/sorl/django-exmodel',
     packages=['exmodel'],
     install_requires=['Django>=1.5', 'six>=1.9.0'],
     license='ICS',

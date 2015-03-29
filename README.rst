@@ -1,7 +1,7 @@
 django-exmodel
 ==============
 The ex-model lets you extend models in apps by adding mixins to them.
-The mixins can over ride fields and methods of the original model.
+The mixins can override fields and methods of the original model.
 
 Example::
 
