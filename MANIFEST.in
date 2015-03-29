@@ -1,0 +1,7 @@
+include AUTHORS
+include LICENSE
+include README.rst
+include runtests.py
+include tox.ini
+recursive-include docs *
+recursive-include tests *

@@ -1,0 +1,11 @@
+*.egg-info
+*.pyc
+*.swo
+*.swp
+._*
+.tox
+.~*
+@test*
+__pycache__
+build
+dist
