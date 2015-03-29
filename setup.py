@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='django-exmodel',
-    version='0.0.1',
+    version='0.0.2',
     description='Makes your Django models extendable.',
     long_description=open('README.rst').read(),
     author='Mikko Hellsing',
