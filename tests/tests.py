@@ -108,6 +108,7 @@ class ExtendingTestCase(TestCase):
         from .a.models import A
         self.assertEqual(A._meta.verbose_name, 'who')
         self.assertEqual(A._meta.verbose_name_plural, 'me')
+        self.assertEqual(A._meta.ordering, ('b',))
         self.assertEqual(A.c, 2)
         self.assertTrue(isinstance(
             A._meta.get_field('a'),
