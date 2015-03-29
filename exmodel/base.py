@@ -88,8 +88,9 @@ class ModelMeta(ModelBase):
     """
     def __new__(cls, name, bases, attrs):
         mixins = get_registered_mixins(name, attrs)
+        basemeta = attrs.get('Meta')
         attrs.update(get_mixins_attrs(mixins))
-        attrs['Meta'] = get_mixins_meta(attrs.get('Meta'), mixins)
+        attrs['Meta'] = get_mixins_meta(basemeta, mixins)
         return ModelBase.__new__(cls, name, bases, attrs)
 
 
