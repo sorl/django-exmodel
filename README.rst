@@ -3,7 +3,8 @@ django-exmodel
 The ex-model lets you extend models in apps by adding mixins to them.
 The mixins can override fields and methods of the original model.
 
-``ÌNSTALLED_APPS``::
+
+The order is important in ``ÌNSTALLED_APPS``::
 
     ...
     'email_staff',
@@ -12,7 +13,7 @@ The mixins can override fields and methods of the original model.
     ...
 
 
-``staff.models``::
+This is what ``staff.models`` looks like::
 
     from django.db import models
     from exmodel import Model, extend_model
@@ -30,7 +31,7 @@ The mixins can override fields and methods of the original model.
             verbose_name = u'Person name'
 
 
-``extended_staff.models``::
+One of the extending the staff app models ``extended_staff.models``::
 
     class PersonMixin(object):
         name = models.CharField(max_length=500)
@@ -46,9 +47,11 @@ The mixins can override fields and methods of the original model.
     extend_model('staff.Person', PersonMixin)
 
 
-``email_staff.models``::
+The ``email_staff.models`` will have precedence since it´s app is listed first
+in ``INSTALLED_APPS``::
 
     class PersonEmailMixin(object):
+        name = models.CharField(_('name please'), max_length=100)
         email = models.EmailField(max_length=500)
 
         def get_email_address(self):
@@ -60,7 +63,7 @@ The mixins can override fields and methods of the original model.
 Now if you do ``from staff.models import Person`` the resulting model will be::
 
     class Person(Model):
-        name = models.CharField(max_length=500)
+        name = models.CharField(_('name please'), max_length=100)
         room = models.CharField(max_length=10)
         alias = models.CharField(max_length=500)
         email = models.EmailField(max_length=500)
